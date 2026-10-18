@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEMM Commerce | Marketplace Retail Partner</title>
+<meta name="description" content="GEMM Commerce is a Miami-based e-commerce company that partners with brands and authorized distributors to sell products on Amazon and Walmart Marketplace.">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F1E3A;
+    --navy-2: #1B2F56;
+    --accent: #F2A33A;
+    --accent-dark: #D98A1F;
+    --ink: #1E2533;
+    --muted: #5B6476;
+    --line: #E3E7EE;
+    --bg: #FFFFFF;
+    --bg-soft: #F5F7FA;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; }
+  h1, h2, h3 { font-family: 'Sora', 'Inter', sans-serif; line-height: 1.2; }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+  /* Header */
+  header { position: sticky; top: 0; z-index: 10; background: rgba(15,30,58,0.97); }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .logo { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.3rem; color: #fff; text-decoration: none; letter-spacing: 0.5px; }
+  .logo { display: flex; align-items: center; }
+  .logo-img { height: 44px; width: auto; display: block; }
+  .logo-text span { color: var(--accent); }
+  .nav ul { display: flex; gap: 28px; list-style: none; }
+  .nav ul a { color: #D5DCEA; text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+  .nav ul a:hover { color: #fff; }
+  .btn { display: inline-block; background: var(--accent); color: var(--navy); font-weight: 600; padding: 12px 24px; border-radius: 8px; text-decoration: none; transition: background .2s; }
+  .btn:hover { background: var(--accent-dark); }
+  .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.4); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.08); }
+
+  /* Hero */
+  .hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%); color: #fff; padding: 96px 0 104px; }
+  .eyebrow { display: inline-block; color: var(--accent); font-weight: 600; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 18px; }
+  .hero h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); max-width: 760px; margin-bottom: 22px; }
+  .hero p { font-size: 1.15rem; color: #C9D2E3; max-width: 640px; margin-bottom: 36px; }
+  .hero .actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* Sections */
+  section { padding: 88px 0; }
+  .soft { background: var(--bg-soft); }
+  .section-head { max-width: 680px; margin-bottom: 48px; }
+  .section-head .eyebrow { color: var(--accent-dark); }
+  .section-head h2 { font-size: clamp(1.7rem, 3.5vw, 2.3rem); margin-bottom: 14px; color: var(--navy); }
+  .section-head p { color: var(--muted); font-size: 1.05rem; }
+
+  .grid { display: grid; gap: 24px; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 30px; }
+  .card .icon { width: 46px; height: 46px; border-radius: 10px; background: rgba(242,163,58,0.14); display: grid; place-items: center; margin-bottom: 18px; }
+  .card .icon svg { width: 24px; height: 24px; stroke: var(--accent-dark); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .card h3 { font-size: 1.15rem; margin-bottom: 10px; color: var(--navy); }
+  .card p { color: var(--muted); font-size: 0.98rem; }
+
+  /* Steps */
+  .steps { counter-reset: step; }
+  .step { position: relative; padding-left: 64px; }
+  .step::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: 0; width: 44px; height: 44px; border-radius: 50%; background: var(--navy); color: #fff; font-family: 'Sora', sans-serif; font-weight: 700; display: grid; place-items: center; }
+  .step h3 { font-size: 1.1rem; margin-bottom: 6px; color: var(--navy); }
+  .step p { color: var(--muted); }
+
+  /* About */
+  .about { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+  .about p { color: var(--muted); margin-bottom: 16px; font-size: 1.03rem; }
+  .facts { background: var(--navy); color: #fff; border-radius: 16px; padding: 34px; }
+  .facts h3 { font-size: 1.1rem; margin-bottom: 18px; color: var(--accent); }
+  .facts ul { list-style: none; }
+  .facts li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.12); color: #D5DCEA; }
+  .facts li:last-child { border-bottom: none; }
+  .facts strong { color: #fff; }
+
+  /* Contact */
+  .contact { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%); color: #fff; text-align: center; }
+  .contact h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 16px; }
+  .contact p { color: #C9D2E3; max-width: 620px; margin: 0 auto 32px; font-size: 1.08rem; }
+  .contact .email { display: block; margin-top: 22px; color: #C9D2E3; font-size: 0.98rem; }
+  .contact .email a { color: var(--accent); text-decoration: none; font-weight: 600; }
+
+  footer { background: #0A1529; color: #8C97AD; padding: 28px 0; font-size: 0.9rem; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+  @media (max-width: 860px) {
+    .grid-3, .grid-2, .about { grid-template-columns: 1fr; }
+    .nav ul { display: none; }
+    section { padding: 64px 0; }
+    .hero { padding: 72px 0 80px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo">
+      <img src="logo.png" alt="GEMM Commerce" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+      <span class="logo-text" style="display:none;">GEMM <span>Commerce</span></span>
+    </a>
+    <ul>
+      <li><a href="#what-we-do">What We Do</a></li>
+      <li><a href="#partners">For Brands</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <a href="#contact" class="btn">Partner With Us</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Marketplace Retail Partner</span>
+    <h1>Getting quality products to millions of online shoppers.</h1>
+    <p>GEMM Commerce partners with brands and authorized distributors to sell products on Amazon and Walmart Marketplace. We bring distribution discipline to online retail.</p>
+    <div class="actions">
+      <a href="#contact" class="btn">Become a Supplier Partner</a>
+      <a href="#what-we-do" class="btn btn-ghost">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<section id="what-we-do">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What We Do</span>
+      <h2>An e-commerce retailer built on operations experience</h2>
+      <p>We purchase inventory directly from brands and authorized distributors and sell it through the largest online marketplaces in the U.S.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 7H6"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg></div>
+        <h3>Marketplace Sales</h3>
+        <p>We list and sell products on Amazon and Walmart Marketplace, reaching customers across the country.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/></svg></div>
+        <h3>Inventory & Fulfillment</h3>
+        <p>Products are fulfilled through Amazon's FBA network for fast, reliable delivery and a consistent customer experience.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
+        <h3>Data-Driven Purchasing</h3>
+        <p>We use sales and pricing data to buy the right quantities at the right time, keeping stock fresh and avoiding overstock.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="partners" class="soft">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">For Brands & Distributors</span>
+      <h2>Why partner with GEMM Commerce</h2>
+      <p>We treat every brand we carry as a long-term relationship, not a one-time transaction.</p>
+    </div>
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Brand Protection</h3>
+        <p>We respect your pricing policies, including MAP, and present your products accurately and professionally.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <h3>Authorized Sourcing Only</h3>
+        <p>We buy only from brands and authorized distributors, with full invoices for every order.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h3>Reliable, Repeat Orders</h3>
+        <p>We plan inventory ahead and reorder consistently, giving you predictable demand from a dependable account.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Professional Operations</h3>
+        <p>Our leadership comes from large-scale distribution and operations, so we run a disciplined, process-driven business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How It Works</span>
+      <h2>A simple path to working together</h2>
+    </div>
+    <div class="grid grid-3 steps">
+      <div class="step">
+        <h3>Connect</h3>
+        <p>Reach out and tell us about your brand or product line. We'll review fit and marketplace demand.</p>
+      </div>
+      <div class="step">
+        <h3>Set Up the Account</h3>
+        <p>We complete your reseller application with our business and tax documentation and agree on terms.</p>
+      </div>
+      <div class="step">
+        <h3>Grow Together</h3>
+        <p>We place orders, sell on the marketplaces, and reorder as your products move.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="soft">
+  <div class="wrap about">
+    <div>
+      <div class="section-head" style="margin-bottom: 24px;">
+        <span class="eyebrow">About Us</span>
+        <h2>Distribution expertise, applied to e-commerce</h2>
+      </div>
+      <p>GEMM Commerce is a Miami-based online retailer and part of the GEMM family of businesses. Our founder brings years of leadership experience in large-scale, multi-site distribution operations and customer experience.</p>
+      <p>We apply that same discipline in planning, inventory management and supplier relationships to online retail, so that the brands we carry are well represented and their products reach customers quickly.</p>
+    </div>
+    <div class="facts">
+      <h3>At a Glance</h3>
+      <ul>
+        <li><strong>Based in:</strong> Miami, Florida</li>
+        <li><strong>Channels:</strong> Amazon, Walmart Marketplace</li>
+        <li><strong>Fulfillment:</strong> Fulfillment by Amazon (FBA)</li>
+        <li><strong>Sourcing:</strong> Brands & authorized distributors</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Let's work together</h2>
+    <p>Are you a brand or distributor looking for a reliable marketplace retail partner? We'd love to hear from you.</p>
+    <a href="mailto:info@gemmcommerce.com?subject=Partnership%20Inquiry" class="btn">Email Us</a>
+    <span class="email">or write to <a href="mailto:info@gemmcommerce.com">info@gemmcommerce.com</a></span>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="yr">2026</span> GEMM Commerce LLC. All rights reserved.</span>
+    <span>Miami, Florida</span>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
