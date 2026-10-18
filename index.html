@@ -5,12 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GEMM Commerce | Marketplace Retail Partner</title>
 <meta name="description" content="GEMM Commerce is a Miami-based e-commerce company that partners with brands and authorized distributors to sell products on Amazon and Walmart Marketplace.">
-<link rel="icon" type="image/png" href="logo.png">
+<link rel="icon" type="image/png" href="gemm-commerce-logo.png">
+
+<!-- ===== FONTS: to match gemmoperationsgroup.com, replace this link and the two font names in :root below ===== -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
 <style>
   :root {
+    /* Fonts (change these two lines to switch fonts) */
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', Arial, sans-serif;
+
     --navy: #0F1E3A;
     --navy-2: #1B2F56;
     --accent: #F2A33A;
@@ -20,35 +27,38 @@
     --line: #E3E7EE;
     --bg: #FFFFFF;
     --bg-soft: #F5F7FA;
+    --error: #C0392B;
+    --success: #1E8E5A;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; }
-  h1, h2, h3 { font-family: 'Sora', 'Inter', sans-serif; line-height: 1.2; }
+  body { font-family: var(--font-body); color: var(--ink); background: var(--bg); line-height: 1.6; }
+  h1, h2, h3 { font-family: var(--font-heading); line-height: 1.2; }
   a { color: inherit; }
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
 
   /* Header */
   header { position: sticky; top: 0; z-index: 10; background: rgba(15,30,58,0.97); }
   .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-  .logo { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.3rem; color: #fff; text-decoration: none; letter-spacing: 0.5px; }
-  .logo { display: flex; align-items: center; }
-  .logo-img { height: 44px; width: auto; display: block; }
+  .logo-text { font-family: var(--font-heading); font-weight: 700; font-size: 1.3rem; color: #fff; text-decoration: none; letter-spacing: 0.5px; }
   .logo-text span { color: var(--accent); }
   .nav ul { display: flex; gap: 28px; list-style: none; }
   .nav ul a { color: #D5DCEA; text-decoration: none; font-size: 0.95rem; font-weight: 500; }
   .nav ul a:hover { color: #fff; }
-  .btn { display: inline-block; background: var(--accent); color: var(--navy); font-weight: 600; padding: 12px 24px; border-radius: 8px; text-decoration: none; transition: background .2s; }
+  .btn { display: inline-block; background: var(--accent); color: var(--navy); font-weight: 600; padding: 12px 24px; border-radius: 8px; text-decoration: none; transition: background .2s; border: none; cursor: pointer; font-family: var(--font-body); font-size: 1rem; }
   .btn:hover { background: var(--accent-dark); }
   .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.4); }
   .btn-ghost:hover { background: rgba(255,255,255,0.08); }
 
-  /* Hero */
-  .hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%); color: #fff; padding: 96px 0 104px; }
+  /* Hero with logo */
+  .hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%); color: #fff; padding: 88px 0 96px; }
+  .hero-grid { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 48px; align-items: center; }
   .eyebrow { display: inline-block; color: var(--accent); font-weight: 600; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 18px; }
-  .hero h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); max-width: 760px; margin-bottom: 22px; }
-  .hero p { font-size: 1.15rem; color: #C9D2E3; max-width: 640px; margin-bottom: 36px; }
+  .hero h1 { font-size: clamp(2.1rem, 5vw, 3.3rem); margin-bottom: 22px; }
+  .hero p { font-size: 1.15rem; color: #C9D2E3; max-width: 600px; margin-bottom: 36px; }
   .hero .actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-logo { display: flex; justify-content: center; align-items: center; }
+  .hero-logo img { width: 100%; max-width: 340px; height: auto; display: block; }
 
   /* Sections */
   section { padding: 88px 0; }
@@ -67,14 +77,12 @@
   .card h3 { font-size: 1.15rem; margin-bottom: 10px; color: var(--navy); }
   .card p { color: var(--muted); font-size: 0.98rem; }
 
-  /* Steps */
   .steps { counter-reset: step; }
   .step { position: relative; padding-left: 64px; }
-  .step::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: 0; width: 44px; height: 44px; border-radius: 50%; background: var(--navy); color: #fff; font-family: 'Sora', sans-serif; font-weight: 700; display: grid; place-items: center; }
+  .step::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: 0; width: 44px; height: 44px; border-radius: 50%; background: var(--navy); color: #fff; font-family: var(--font-heading); font-weight: 700; display: grid; place-items: center; }
   .step h3 { font-size: 1.1rem; margin-bottom: 6px; color: var(--navy); }
   .step p { color: var(--muted); }
 
-  /* About */
   .about { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
   .about p { color: var(--muted); margin-bottom: 16px; font-size: 1.03rem; }
   .facts { background: var(--navy); color: #fff; border-radius: 16px; padding: 34px; }
@@ -84,7 +92,6 @@
   .facts li:last-child { border-bottom: none; }
   .facts strong { color: #fff; }
 
-  /* Contact */
   .contact { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%); color: #fff; text-align: center; }
   .contact h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 16px; }
   .contact p { color: #C9D2E3; max-width: 620px; margin: 0 auto 32px; font-size: 1.08rem; }
@@ -94,11 +101,42 @@
   footer { background: #0A1529; color: #8C97AD; padding: 28px 0; font-size: 0.9rem; }
   footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 
+  /* ===== Supplier form (pop-up) ===== */
+  .modal { position: fixed; inset: 0; z-index: 100; display: none; align-items: flex-start; justify-content: center; background: rgba(10,21,41,0.72); padding: 32px 16px; overflow-y: auto; }
+  .modal.open { display: flex; }
+  .modal-box { background: #fff; width: 100%; max-width: 640px; border-radius: 16px; padding: 36px; position: relative; box-shadow: 0 24px 60px rgba(0,0,0,0.3); }
+  .modal-close { position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 1.8rem; line-height: 1; color: var(--muted); cursor: pointer; }
+  .modal-close:hover { color: var(--ink); }
+  .modal-box h2 { color: var(--navy); font-size: 1.6rem; margin-bottom: 8px; }
+  .modal-box .intro { color: var(--muted); margin-bottom: 24px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .field { display: flex; flex-direction: column; }
+  .field.full { grid-column: 1 / -1; }
+  .field label { font-size: 0.88rem; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+  .field label .req { color: var(--error); }
+  .field input, .field select, .field textarea { font-family: var(--font-body); font-size: 0.98rem; padding: 11px 12px; border: 1.5px solid var(--line); border-radius: 8px; color: var(--ink); background: #fff; width: 100%; }
+  .field textarea { min-height: 110px; resize: vertical; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--navy-2); box-shadow: 0 0 0 3px rgba(27,47,86,0.12); }
+  .form-actions { margin-top: 22px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .form-note { font-size: 0.82rem; color: var(--muted); }
+  .form-msg { margin-top: 16px; padding: 12px 14px; border-radius: 8px; font-size: 0.95rem; display: none; }
+  .form-msg.error { display: block; background: #FDECEA; color: var(--error); }
+  .thanks { text-align: center; padding: 20px 0 8px; display: none; }
+  .thanks .check { width: 64px; height: 64px; border-radius: 50%; background: rgba(30,142,90,0.12); display: grid; place-items: center; margin: 0 auto 18px; }
+  .thanks .check svg { width: 32px; height: 32px; stroke: var(--success); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .thanks h2 { margin-bottom: 10px; }
+  .thanks p { color: var(--muted); margin-bottom: 24px; }
+  .hp { position: absolute; left: -9999px; }
+
   @media (max-width: 860px) {
-    .grid-3, .grid-2, .about { grid-template-columns: 1fr; }
+    .hero-grid, .grid-3, .grid-2, .about { grid-template-columns: 1fr; }
+    .hero-logo { order: -1; }
+    .hero-logo img { max-width: 220px; }
     .nav ul { display: none; }
     section { padding: 64px 0; }
-    .hero { padding: 72px 0 80px; }
+    .hero { padding: 56px 0 72px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .modal-box { padding: 28px 22px; }
   }
 </style>
 </head>
@@ -106,28 +144,30 @@
 
 <header>
   <div class="wrap nav">
-    <a href="#" class="logo">
-      <img src="logo.png" alt="GEMM Commerce" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
-      <span class="logo-text" style="display:none;">GEMM <span>Commerce</span></span>
-    </a>
+    <a href="#" class="logo-text">GEMM <span>Commerce</span></a>
     <ul>
       <li><a href="#what-we-do">What We Do</a></li>
       <li><a href="#partners">For Brands</a></li>
       <li><a href="#how">How It Works</a></li>
       <li><a href="#about">About</a></li>
     </ul>
-    <a href="#contact" class="btn">Partner With Us</a>
+    <a href="#" class="btn" data-open-form>Partner With Us</a>
   </div>
 </header>
 
 <section class="hero">
-  <div class="wrap">
-    <span class="eyebrow">Marketplace Retail Partner</span>
-    <h1>Getting quality products to millions of online shoppers.</h1>
-    <p>GEMM Commerce partners with brands and authorized distributors to sell products on Amazon and Walmart Marketplace. We bring distribution discipline to online retail.</p>
-    <div class="actions">
-      <a href="#contact" class="btn">Become a Supplier Partner</a>
-      <a href="#what-we-do" class="btn btn-ghost">Learn More</a>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Marketplace Retail Partner</span>
+      <h1>Getting quality products to millions of online shoppers.</h1>
+      <p>GEMM Commerce partners with brands and authorized distributors to sell products on Amazon and Walmart Marketplace. We bring distribution discipline to online retail.</p>
+      <div class="actions">
+        <a href="#" class="btn" data-open-form>Become a Supplier Partner</a>
+        <a href="#what-we-do" class="btn btn-ghost">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-logo">
+      <img src="gemm-commerce-logo.png" alt="GEMM Commerce Logo" onerror="this.parentElement.style.display='none'">
     </div>
   </div>
 </section>
@@ -200,7 +240,7 @@
     <div class="grid grid-3 steps">
       <div class="step">
         <h3>Connect</h3>
-        <p>Reach out and tell us about your brand or product line. We'll review fit and marketplace demand.</p>
+        <p>Fill out our supplier form and tell us about your brand or product line. We'll review fit and marketplace demand.</p>
       </div>
       <div class="step">
         <h3>Set Up the Account</h3>
@@ -239,8 +279,8 @@
 <section id="contact" class="contact">
   <div class="wrap">
     <h2>Let's work together</h2>
-    <p>Are you a brand or distributor looking for a reliable marketplace retail partner? We'd love to hear from you.</p>
-    <a href="mailto:info@gemmcommerce.com?subject=Partnership%20Inquiry" class="btn">Email Us</a>
+    <p>Are you a brand or distributor looking for a reliable marketplace retail partner? Tell us about your products and we'll get back to you.</p>
+    <a href="#" class="btn" data-open-form>Become a Supplier Partner</a>
     <span class="email">or write to <a href="mailto:info@gemmcommerce.com">info@gemmcommerce.com</a></span>
   </div>
 </section>
@@ -252,6 +292,166 @@
   </div>
 </footer>
 
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<!-- ===== Supplier Partner Form (pop-up) ===== -->
+<div class="modal" id="supplierModal" role="dialog" aria-modal="true" aria-labelledby="formTitle">
+  <div class="modal-box">
+    <button class="modal-close" type="button" aria-label="Close" data-close-form>&times;</button>
+
+    <div id="formView">
+      <h2 id="formTitle">Become a Supplier Partner</h2>
+      <p class="intro">Tell us about your company and products. We typically respond within 1–2 business days.</p>
+
+      <form id="supplierForm" novalidate>
+        <!--
+          ===== WHERE SUBMISSIONS GO =====
+          Replace YOUR-EMAIL@EXAMPLE.COM below with the email address that should receive supplier inquiries.
+        -->
+        <input type="hidden" id="formEmail" value="YOUR-EMAIL@EXAMPLE.COM">
+        <input type="hidden" name="_subject" value="New Supplier Partner Inquiry - GEMM Commerce">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="company">Company name <span class="req">*</span></label>
+            <input type="text" id="company" name="Company" required>
+          </div>
+          <div class="field">
+            <label for="website">Company website</label>
+            <input type="text" id="website" name="Website" placeholder="www.example.com">
+          </div>
+          <div class="field">
+            <label for="name">Contact name <span class="req">*</span></label>
+            <input type="text" id="name" name="Contact Name" required>
+          </div>
+          <div class="field">
+            <label for="title">Job title</label>
+            <input type="text" id="title" name="Job Title">
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="Phone">
+          </div>
+          <div class="field">
+            <label for="type">Company type <span class="req">*</span></label>
+            <select id="type" name="Company Type" required>
+              <option value="">Select one</option>
+              <option>Brand / Manufacturer</option>
+              <option>Authorized Distributor</option>
+              <option>Wholesaler</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="moq">Minimum order (optional)</label>
+            <input type="text" id="moq" name="Minimum Order" placeholder="e.g. $500 or 1 case">
+          </div>
+          <div class="field full">
+            <label for="categories">Product categories / brands <span class="req">*</span></label>
+            <input type="text" id="categories" name="Product Categories" placeholder="e.g. Home & Kitchen, Pet Supplies, Health & Beauty" required>
+          </div>
+          <div class="field full">
+            <label for="message">Tell us more</label>
+            <textarea id="message" name="Message" placeholder="Your product line, pricing policies (MAP), how you work with online resellers, etc."></textarea>
+          </div>
+        </div>
+
+        <div class="form-msg" id="formMsg"></div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn" id="submitBtn">Submit Inquiry</button>
+          <span class="form-note">Fields marked <span style="color:var(--error)">*</span> are required.</span>
+        </div>
+      </form>
+    </div>
+
+    <div class="thanks" id="thanksView">
+      <div class="check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <h2>Thank you!</h2>
+      <p>We received your inquiry and will be in touch within 1–2 business days.</p>
+      <button type="button" class="btn" data-close-form>Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const modal = document.getElementById('supplierModal');
+  const form = document.getElementById('supplierForm');
+  const formView = document.getElementById('formView');
+  const thanksView = document.getElementById('thanksView');
+  const msg = document.getElementById('formMsg');
+  const submitBtn = document.getElementById('submitBtn');
+
+  function openForm(e) {
+    if (e) e.preventDefault();
+    formView.style.display = 'block';
+    thanksView.style.display = 'none';
+    msg.className = 'form-msg';
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('company').focus(), 50);
+  }
+  function closeForm() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-open-form]').forEach(el => el.addEventListener('click', openForm));
+  document.querySelectorAll('[data-close-form]').forEach(el => el.addEventListener('click', closeForm));
+  modal.addEventListener('click', e => { if (e.target === modal) closeForm(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeForm(); });
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    msg.className = 'form-msg';
+
+    // Check required fields
+    const required = form.querySelectorAll('[required]');
+    for (const field of required) {
+      if (!field.value.trim()) {
+        msg.textContent = 'Please fill in all required fields.';
+        msg.className = 'form-msg error';
+        field.focus();
+        return;
+      }
+    }
+    const emailField = document.getElementById('email');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value.trim())) {
+      msg.textContent = 'Please enter a valid email address.';
+      msg.className = 'form-msg error';
+      emailField.focus();
+      return;
+    }
+
+    const to = document.getElementById('formEmail').value.trim();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    try {
+      const data = new FormData(form);
+      const res = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(to), {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: data
+      });
+      if (!res.ok) throw new Error('Request failed');
+      form.reset();
+      formView.style.display = 'none';
+      thanksView.style.display = 'block';
+    } catch (err) {
+      msg.innerHTML = 'Sorry, something went wrong. Please email us at <a href="mailto:info@gemmcommerce.com">info@gemmcommerce.com</a>.';
+      msg.className = 'form-msg error';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Inquiry';
+    }
+  });
+</script>
 </body>
 </html>
